@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.table, th, td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+.form-container {
+    width: 300px;
+    background-color: skyblue;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-data {
+    width: 100px;
+    height: 40px;
+    font-size: 1.4rem;
+    font-weight: 300;
+    padding: 0 10px;
+}
+
+.add-button {
+    width: 100px;
+    height: 20px;
+}
