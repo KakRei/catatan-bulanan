@@ -16,20 +16,15 @@
                     <th>Pemasukan</th>
                     <th>Pengeluaran</th>
                 </tr>
-                <tr id="table-row">
-                    <td id="table-date"></td>
-                    <td id="table-income"></td>
-                    <td id="table-expend"></td>
-                </tr>
             </table>
         </div>
         <div class="form-container">
             <h2>Tanggal</h2>
-            <input type="text" id="input-date" class="form-data">
+            <input type="date" id="input-date" class="form-data" required>
             <h2>Pemasukan</h2>
-            <input type="text" id="input-income" class="form-data">
+            <input type="number" id="input-income" class="form-data" autocomplete="off" step="100000" required>
             <h2>Pengeluaran</h2>
-            <input type="text" id="input-expend" class="form-data">
+            <input type="number" id="input-expend" class="form-data" autocomplete="off" step="100000" required>
             <button type="button" onclick="addData()" class="add-button">Add</button>
         </div>
     </div>
