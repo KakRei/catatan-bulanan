@@ -17,6 +17,10 @@
     padding: 10px;
 }
 
+.table-container {
+    position: relative;
+}
+
 .form-container {
     width: 300px;
     background-color: skyblue;
@@ -37,4 +41,17 @@
 .add-button {
     width: 100px;
     height: 20px;
+}
+
+td {
+    position: relative;
+}
+
+.remove-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: aqua;
+    width: 10px;
+    height: 10px;
 }
