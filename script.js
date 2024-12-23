@@ -3,7 +3,7 @@ const dateInput = document.getElementById('input-date'),
     expendInput = document.getElementById('input-expend'),
     tableBody = document.getElementById('table-body');
 
-getData();
+loadData();
 function addData() {
     
     const date = dateInput.value;
@@ -12,28 +12,18 @@ function addData() {
 
     const formatter = new Intl.NumberFormat('Id-id');
 
-    let rowData = `<tr><td class='date'>${date}</td><td class='income'>${formatter.format(income)}</td><td class='expend'>${formatter.format(expend)}<span class='remove-button' onclick=removeData(this)></span></td></tr>`
+    let rowData = `<tr class='row-data'><td class='date'>${date}</td><td class='income'>${formatter.format(income)}</td><td class='expend'>${formatter.format(expend)}<span class='remove-button' onclick=removeData(this)></span></td></tr>`
 
     tableBody.insertAdjacentHTML("beforeend", rowData);
-
-    let dataArray = [];
-    // Create a new data entry object
-    const data = {
-        date: document.querySelector('.date').textContent,
-        income: document.querySelector('.income').textContent,
-        expend: document.querySelector('.expend').textContent
-    };
-
-    console.log(data)
-
-    localStorage.setItem('data', JSON.stringify(data));
 
     dateInput.value = '';
     incomeInput.value = '';
     expendInput.value = '';
+
+    saveData()
 }
 
-function getData() {
+function loadData() {
     // Get data from local storage
     let data = JSON.parse(localStorage.getItem("data")) || [];
 
@@ -41,17 +31,39 @@ function getData() {
     for (let entry of data) {
         const formatter = new Intl.NumberFormat('Id-id');
 
-        let rowData = `<tr><td>${entry.date}</td><td>${formatter.format(entry.income)}</td><td>${formatter.format(entry.expend)}<span class='remove-button' onclick=removeData(this)></span></td></tr>`
+       let rowData = `<tr class='row-data'><td class='date'>${entry.date}</td><td class='income'>${formatter.format(entry.income)}</td><td class='expend'>${formatter.format(entry.expend)}<span class='remove-button' onclick=removeData(this)></span></td></tr>`
 
         tableBody.insertAdjacentHTML("beforeend", rowData);
     }
 }
 
 function saveData() {
+    let dataArray = [];
+    // Create a new data entry object
+    
+    let getRowData = document.querySelectorAll('.row-data');
+    
+    getRowData.forEach(row =>{
+        const date = row.querySelector('.date').textContent,
+        income = row.querySelector('.income').textContent,
+        expend = row.querySelector('.expend').textContent;
 
+        const data = {
+            date: date,
+            income: income,
+            expend: expend
+        };
+
+        dataArray.push(data);
+    })
+
+    console.log(dataArray)
+
+    localStorage.setItem('data', JSON.stringify(dataArray));
 }
 
 function removeData(e) {
-    e.parentElement.remove();
-    getData();
+    const row = e.parentElement.parentElement;
+    row.remove();
+    saveData();
 }
